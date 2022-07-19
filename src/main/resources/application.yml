@@ -1,0 +1,9 @@
+spring:
+  data:
+    mongodb:
+      database: tweetApp
+      host: mongodb
+      port: 27017
+    kafka:
+      host: kafka
+      port: 9092

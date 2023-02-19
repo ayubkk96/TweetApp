@@ -12,7 +12,7 @@ public class KafkaListeners {
             groupId = "first"
     )
     void listener(String data) {
-        System.out.println("Listener received: " + data + "yayy");
+        System.out.println("Listener received: " + data + "stop saying yay");
     }
 
 }

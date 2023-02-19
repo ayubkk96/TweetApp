@@ -15,7 +15,7 @@ services:
       KAFKA_ADVERTISED_HOST_NAME: kafka
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
   java:
-    image: docker-spring-boot:latest
+    image: new-docker-spring-boot:latest
     container_name: java
     ports:
      - "8080:8080"
@@ -61,10 +61,9 @@ services:
       - $PWD/elk-config:/elk-config
     command: logstash -f /elk-config/logstash.config
     depends_on:
-        - elasticsearch
+        - Elasticsearch
     networks:
       - elk
-
   Kibana:
     image: kibana:7.16.2
     container_name: kibana

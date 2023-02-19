@@ -14,9 +14,9 @@ public class Tweet {
     private String avatarLink;
     private int likesCount;
 
-    private ArrayList<String> likedBy;
+    private ArrayList<String> likedBy = new ArrayList<>();
 
-    private ArrayList<Tweet> repliedTo;
+    private ArrayList<Tweet> repliedTo = new ArrayList<>();
 
 
     public String getId() {

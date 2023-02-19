@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 
 @RestController
+@CrossOrigin("http://localhost:3001")
 public class TweetController {
 
     private static final Logger logger = Logger.getLogger(TweetController.class.getName());
@@ -84,7 +85,7 @@ public class TweetController {
 
     @RequestMapping(value = "/api/v1.0/tweets/{username}/like/{id}", method = RequestMethod.PUT)
     public void likeTweet(@PathVariable String username, @PathVariable String id) {
-
+        System.out.println("CONSOLE: WE IN THE FUNCTION NEW IMAGE");
         tweetHelper.likeTweet(id, username);
         Tweet tweet = tweetRepo.getTweetsById(id);
         tweet.getLikedBy().add(username);

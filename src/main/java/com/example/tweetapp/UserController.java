@@ -1,5 +1,6 @@
 package com.example.tweetapp;
 
+import com.google.gson.Gson;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -7,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 
 @RestController
+@CrossOrigin("http://localhost:3001")
 public class UserController {
 
 
@@ -18,11 +20,19 @@ public class UserController {
     @Autowired
     private UserRepo userRepo;
 
+    @Autowired
+    private Gson gson;
+
     @RequestMapping(path = "/api/v1.0/tweets/register", method = RequestMethod.POST)
-    public void register(@RequestBody User user) {
+    public void register(@RequestBody String user) {
         try {
-            // userHelper.add(user);
-            userRepo.save(user);
+            System.out.println(user);
+
+            User user1 = gson.fromJson(user, User.class);
+            System.out.println(user1);
+            userHelper.add(user1);
+
+            userRepo.save(user1);
         }
         catch (Exception e) {
             logger.error("Error thrown with exception: " + e);
@@ -31,16 +41,17 @@ public class UserController {
     }
 
     @RequestMapping(path = "/api/v1.0/tweets/login", method = RequestMethod.GET)
-    public void login(@RequestBody User user) {
+    public String login() {
         try {
-            // userHelper.login(user);
-            user.setLoggedIn(true);
-            userRepo.save(user);
+            User user = new User();
+
+            user.setToken("test123");
+            return gson.toJson(user.getToken());
         }
         catch (Exception e) {
             logger.error("Error thrown with exception: " + e);
         }
-
+        return null;
     }
 
     @RequestMapping(path = "/api/v1.0/tweets/users/all", method = RequestMethod.GET)

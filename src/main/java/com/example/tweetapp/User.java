@@ -2,7 +2,8 @@ package com.example.tweetapp;
 
 import org.springframework.data.annotation.Id;
 
-public class User {
+public class
+User {
 
     @Id
     private String id;
@@ -17,6 +18,8 @@ public class User {
     private String username;
 
     private Boolean loggedIn;
+
+    private String token;
 
 
     public String getId() {
@@ -99,6 +102,14 @@ public class User {
         this.loggedIn = loggedIn;
     }
 
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -112,6 +123,7 @@ public class User {
                 ", contactNumber='" + contactNumber + '\'' +
                 ", username='" + username + '\'' +
                 ", loggedIn=" + loggedIn +
+                ", token='" + token + '\'' +
                 '}';
     }
 }
